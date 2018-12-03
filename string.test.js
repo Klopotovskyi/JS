@@ -61,23 +61,4 @@ test('test_string', () => {
 test('test_string', () => {
     expect(str.padEnd(10, 'pro')).toEqual('Pavlopropr');
 });
-//
-test('test_string', () => {
-    expect().toEqual();
-});
-//
-test('test_string', () => {
-    expect().toEqual();
-});
 
-
-
-
-
-
-
-
-//
-test('test_string', () => {
-    expect().toEqual();
-});
