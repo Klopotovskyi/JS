@@ -8,5 +8,5 @@ test('test_compare_operators', () => {
     expect(++x).toEqual(10);
 });
 test('test_compare_operators', () => {
-    expect(y).toEqual(9);
+    expect(y).toEqual(false);
 });
