@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
         pageNumber=getRandomInt(1, 11);
         console.log(pageNumber)
     }, 2000);
+//using callback
+    /*
    function getPost(callback) {
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -20,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 callback(this.responseText);
             }
         };
-
         xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
         xhttp.send();
     }
@@ -29,5 +30,27 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(JSON.parse(responseText));
         })
     } , 2500);
+    */
+//using promises
+    let GetbyPromise= new Promise((resolve,reject) => {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                resolve(this.responseText);
+                reject(this.status);
+            }
+        };
+        xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
+        xhttp.send();
+    });
+    setTimeout(function () {
+        GetbyPromise.then((responseText) => {
+            console.log(JSON.parse(responseText));
+        }).catch((status)=>{
+            console.log(JSON.parse(status));
+        });
+    } , 2500);
+
+
 });
 
