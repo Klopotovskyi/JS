@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
         xhttp.open("GET", "http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}");
         xhttp.send();
     }
-    setTimeout(getPost(function (responseText) {
-        console.log(JSON.parse(responseText));
-    }), 2500);
+    setTimeout(function () {
+        getPost(function (responseText) {
+            console.log(JSON.parse(responseText));
+        })
+    } , 2500);
 })
