@@ -1,14 +1,16 @@
-'use strict';
 document.addEventListener('DOMContentLoaded', function () {
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
+    let limitNumber;
+    let pageNumber;
+
     setTimeout(function () {
-        let limitNumber=getRandomInt(1, 11);
+        limitNumber=getRandomInt(1, 11);
         console.log(limitNumber)
-    }, 2000);
+    }, 1000);
     setTimeout(function () {
-        let pageNumber=getRandomInt(1, 11);
+        pageNumber=getRandomInt(1, 11);
         console.log(pageNumber)
     }, 2000);
    function getPost(callback) {
@@ -18,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 callback(this.responseText);
             }
         };
-        xhttp.open('GET', 'http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}');
+
+        xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
         xhttp.send();
     }
     setTimeout(function () {
@@ -26,4 +29,5 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(JSON.parse(responseText));
         })
     } , 2500);
-})
+});
+
