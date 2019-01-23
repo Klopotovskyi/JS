@@ -13,8 +13,14 @@ document.addEventListener('DOMContentLoaded', function () {
         pageNumber=getRandomInt(1, 11);
         console.log(pageNumber)
     }, 2000);
-//using callback
-    /*
+
+    setTimeout(function () {
+        getPost(function (responseText) {
+            console.log("callback response =>", JSON.parse(responseText));
+        })
+    }, 2500);
+    setTimeout(GetPostByPromise, 2500);
+    //using callback
    function getPost(callback) {
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -25,31 +31,25 @@ document.addEventListener('DOMContentLoaded', function () {
         xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
         xhttp.send();
     }
-    setTimeout(function () {
-        getPost(function (responseText) {
-            console.log(JSON.parse(responseText));
-        })
-    } , 2500);
-    */
 //using promises
-    let GetbyPromise= new Promise((resolve,reject) => {
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                resolve(this.responseText);
-                reject(this.status);
-            }
-        };
-        xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
-        xhttp.send();
-    });
-    setTimeout(function () {
-        GetbyPromise.then((responseText) => {
-            console.log(JSON.parse(responseText));
-        }).catch((status)=>{
-            console.log(JSON.parse(status));
+    function GetPostByPromise() {
+        let GetbyPromise= new Promise((resolve,reject) => {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    resolve(this.responseText);
+                    reject(this.status);
+                }
+            };
+            xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
+            xhttp.send();
         });
-    } , 2500);
+        GetbyPromise.then((responseText) => {
+            console.log("promise response =>", JSON.parse(responseText));
+        }).catch((status) => {
+            console.log("promise status =>", JSON.parse(status));
+        });
+    }
 
 
 });
