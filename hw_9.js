@@ -1,3 +1,4 @@
+'use strict'
 document.addEventListener('DOMContentLoaded', function () {
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(GetPostByPromise, 2500);
     setTimeout(GetPostByAsync, 2500);
     //using callback
-   function getPost(callback) {
+    function getPost(callback) {
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
@@ -39,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     resolve(this.responseText);
-                    reject(this.status);
                 }
             };
             xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
@@ -52,20 +52,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 //using async/await
- async function GetPostByAsync() {
-     let GetbyAsync = new Promise((resolve,reject) => {
-         let xhttp = new XMLHttpRequest();
-         xhttp.onreadystatechange = function () {
-             if (this.readyState === 4 && this.status === 200) {
-                 resolve(this.responseText);
-                 reject(this.status);
-             }
-         };
-         xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
-         xhttp.send();
-     });
-     let AsyncResponse = await GetbyAsync;
-    console.log("Async Response  =>",JSON.parse(AsyncResponse));
- }
+    async function GetPostByAsync() {
+        let GetbyAsync = new Promise((resolve,reject) => {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    resolve(this.responseText);
+                    reject(this.status);
+                }
+            };
+            xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
+            xhttp.send();
+        });
+        let AsyncResponse = await GetbyAsync;
+        console.log("Async Response  =>",JSON.parse(AsyncResponse));
+    }
 });
 
