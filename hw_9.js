@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }, 2500);
     setTimeout(GetPostByPromise, 2500);
+    setTimeout(GetPostByAsync, 2500);
+
     //using callback
    function getPost(callback) {
         let xhttp = new XMLHttpRequest();
@@ -50,7 +52,23 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("promise status =>", JSON.parse(status));
         });
     }
+//using async/await
+ async function GetPostByAsync() {
+     let GetbyAsync= new Promise((resolve,reject) => {
+         let xhttp = new XMLHttpRequest();
+         xhttp.onreadystatechange = function () {
+             if (this.readyState === 4 && this.status === 200) {
+                 resolve(this.responseText);
+                 reject(this.status);
+             }
+         };
+         xhttp.open("GET", `http://apistaging.theatre.pp.ua/posts.json?limit=${limitNumber}&page=${pageNumber}`);
+         xhttp.send();
+     });
+     let AsyncResponse = await GetbyAsync;
 
+    console.log("Async Response  =>",JSON.parse(AsyncResponse));
+ }
 
 });
 
