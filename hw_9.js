@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pageNumber=getRandomInt(1, 11);
         console.log(pageNumber)
     }, 2000);
+
     setTimeout(function () {
         getPost(function (responseText) {
             console.log("callback response =>", JSON.parse(responseText));
@@ -20,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 2500);
     setTimeout(GetPostByPromise, 2500);
     setTimeout(GetPostByAsync, 2500);
-
     //using callback
    function getPost(callback) {
         let xhttp = new XMLHttpRequest();
@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
          xhttp.send();
      });
      let AsyncResponse = await GetbyAsync;
-
     console.log("Async Response  =>",JSON.parse(AsyncResponse));
  }
 });
