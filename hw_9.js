@@ -66,8 +66,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     async function GetReqByAsync(){
-        let result = await GetbyAsync();
-        console.log("Async Response  =>",JSON.parse(result));
+        try{
+            let result = await GetbyAsync();
+            console.log("Async Response  =>",JSON.parse(result));
+        }catch (error) {
+            console.error(error);
+        }
     }
 });
 
