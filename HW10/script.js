@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    const V = 2;
+    let V;
 });

@@ -17,6 +17,7 @@ module.exports = {
                 SwitchCase: 1
             }
         ],
+        'func-names': ["error", "as-needed"],
         'linebreak-style': ['error', 'unix'],
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
