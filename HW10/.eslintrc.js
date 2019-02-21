@@ -18,7 +18,8 @@ module.exports = {
             }
         ],
         'func-names': ["error", "as-needed"],
-        'linebreak-style': ['error', 'unix'],
+        'no-underscore-dangle': ["error", { "allowAfterThis": true }],
+        'linebreak-style': ['error', 'windows'],
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
         'no-unused-vars': ['error', { vars: 'local' }],
