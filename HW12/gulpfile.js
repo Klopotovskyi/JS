@@ -1,35 +1,26 @@
-const gulp = require('gulp');
-const $ = require('gulp-load-plugins')();
-const babel = require('gulp-babel');
-const ts = require("gulp-typescript");
-const tsProject = ts.createProject("tsconfig.json");
+var gulp = require ('gulp');
+var sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+var rewriteCSS = require('gulp-rewrite-css');
 
-const scssInput = 'src/sass/**/*.scss';
-const jsInput = 'src/js/**/*.js';
-const output = 'dist/';
+sass.compiler = require('node-sass');
 
-
-gulp.task('styles', () => {
-	return gulp.src(scssInput)
-		.pipe($.sourcemaps.init())
-		.pipe($.sass({ outputStyle: 'compressed' }).on('error', $.sass.logError))
-		.pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
-		.pipe($.sourcemaps.write())
-		.pipe(gulp.dest(output));
+gulp.task('sass', function () {
+    return gulp.src('./src/sass/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false}))
+        .pipe(gulp.dest('./src/css'))
 });
 
-gulp.task('js', () => {
-	return gulp.src(jsInput)
-		.pipe(babel())
-		.pipe(gulp.dest(output));
+gulp.task('my-rewrite', function() {
+    var dest = './dist/';
+    return gulp.src('./static/css/*.css')
+        .pipe(rewriteCSS({destination:dest}))
+        .pipe(gulp.dest(dest));
 });
 
-gulp.task("ts", function () {
-  return tsProject.src()
-    .pipe(tsProject())
-    .js.pipe(gulp.dest(output));
-});
-
-gulp.task('default', ['styles'], () => {
-  gulp.watch(scssInput, ['styles']);
+gulp.task('sass:watch', function () {
+    gulp.watch('./src/sass/**/*.scss', ['sass']);
 });

@@ -1,8 +1,8 @@
 {
-  "name": "setup-project-example",
+  "name": "hw12",
   "version": "1.0.0",
-  "description": "Example project with linters basic setup",
-  "main": "index.js",
+  "description": "classes",
+  "main": "script.js",
   "scripts": {
     "lint": "lint-staged",
     "lint-js": "eslint --config .eslintrc.js src/",
@@ -54,12 +54,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yana-tsulya/setup-project-example.git"
+    "url": "git+https://github.com/Klopotovskyi/JS.git"
   },
-  "author": "yana.tsylinska@gmail.com",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yana-tsulya/setup-project-example/issues"
+    "url": "https://github.com/Klopotovskyi/JS/issues"
   },
-  "homepage": "https://github.com/yana-tsulya/setup-project-example#readme"
+  "homepage": "https://github.com/Klopotovskyi/JS#readme"
 }
