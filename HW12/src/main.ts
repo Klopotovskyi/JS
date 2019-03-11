@@ -25,8 +25,8 @@
  */
 
 class Point {
-    protected _x: number;
-    protected _y: number;
+     _x: number;
+     _y: number;
     constructor(private x: number, private y: number){
         this._x = x;
         this._y = y;
@@ -59,7 +59,6 @@ class Shape {
 class Polygon extends Shape {
     protected _tops: Array<Point>;
     private _perimeter: number;
-
     constructor (protected center: Point, protected tops: Array<Point>) {
         super(center);
         this._tops = tops;
@@ -123,3 +122,9 @@ const shapes = {
     Circle: Circle,
     Point: Point
 };
+const centerPoint = new Point(7, 5);
+const point1 = new Point(3, 3);
+const point2 = new Point(8, 3);
+const point3 = new Point(11, 7);
+const point4 = new Point(6, 7);
+const tops = [point1, point2, point3, point4];
