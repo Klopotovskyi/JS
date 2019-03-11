@@ -1,7 +1,7 @@
 var gulp = require ('gulp');
 var sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
-var rewriteCSS = require('gulp-rewrite-css');
+// var rewriteCSS = require('gulp-rewrite-css');
 var ts = require("gulp-typescript");
 var tsProject = ts.createProject("tsconfig.json");
 
@@ -16,12 +16,12 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./src/css'));
 });
 
-gulp.task('my-rewrite', function() {
-    var dest = './dist/';
-    return gulp.src('./static/css/*.css')
-        .pipe(rewriteCSS({destination:dest}))
-        .pipe(gulp.dest(dest));
-});
+// gulp.task('my-rewrite', function() {
+//     var dest = './dist/';
+//     return gulp.src('./static/css/*.css')
+//         .pipe(rewriteCSS({destination:dest}))
+//         .pipe(gulp.dest(dest));
+// });
 
 gulp.task('sass:watch', function () {
     gulp.watch('./src/sass/**/*.scss', ['sass']);
