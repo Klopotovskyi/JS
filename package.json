@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Klopotovskyi/JS#readme",
   "devDependencies": {
     "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "jsdoc": "^3.5.5"
   }
 }
